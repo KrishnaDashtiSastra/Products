@@ -61,7 +61,7 @@ app.post('/products', (req, res) => {
     res.json(products)
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen( PORT, ()=>{
     console.log("running on port "+PORT)
 })
