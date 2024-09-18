@@ -32,11 +32,11 @@ app.get('/', (req, res) => {
     res.send('Add /products to url')
 })
 
-app.get('/products', (req, res) => {
+app.get('/api/products', (req, res) => {
     res.json(products);
 })
 
-app.get('/products/:id', (req, res) => {
+app.get('/api/products/:id', (req, res) => {
     const id = req.params.id   
     const prod = products.find(p => p.id === id)
     if(prod){ res.json(prod)}
@@ -48,7 +48,7 @@ const generateid = () => {
     return String(maxID+1)
 }
 
-app.post('/products', (req, res) => {
+app.post('/api/products', (req, res) => {
     const body = req.body
     const prod = {
         id: generateid(),
