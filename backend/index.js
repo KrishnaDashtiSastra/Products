@@ -9,6 +9,18 @@ app.use(express.json());
 app.use(cors());
 app.use(express.static('dist'));
 
+const errorHandler = (error, request, response, next) => {
+    console.error(error.message)
+  
+    if (error.name === 'CastError') {
+      return response.status(400).send({ error: 'malformatted id' })
+  
+    } else if (error.name === 'ValidationError') {
+      return response.status(400).json({ error: error.message })
+    }
+  
+    next(error)
+}
 
 app.get('/', (req, res) => {
     res.send('Add /products to url')
@@ -44,7 +56,7 @@ app.post('/api/products', (req, res) => {
 
     product.save().then(result => {
         console.log('product saved!')
-    })
+    }).catch(error => next(error))
 
     Product.find({}).then( products =>
         res.json(products)
