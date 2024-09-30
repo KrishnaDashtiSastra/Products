@@ -2,9 +2,11 @@
 import prodservice from './../services/products.js'
 import './../App.css'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 const AddProduct = ({setProducts}) => {  
+  const navigate = useNavigate()
   
   const [newProduct, setNewProduct] = useState({
     name: '',
@@ -29,6 +31,7 @@ const AddProduct = ({setProducts}) => {
         category: ''
       })
     })
+    navigate('/Products')
   }
   
     const handleInputChange = (event) => {
