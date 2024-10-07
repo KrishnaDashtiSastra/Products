@@ -32,10 +32,10 @@ app.get('/api/products', (req, res) => {
     )
 })
 
-app.get('/api/products/:id', (req, res) => {
-    const id = req.params.id   
-    Product.find({_id:id}).then( products => {
-        if(products){ res.json(prod)}
+app.get('/api/products/:name', (req, res) => {
+    const name = req.params.name   
+    Product.find({name:name}).then( products => {
+        if(products){ res.json(products)}
         else{res.status(204).end()}
     })
     
@@ -61,6 +61,14 @@ app.post('/api/products', (req, res) => {
     Product.find({}).then( products =>
         res.json(products)
     )
+})
+app.delete('/api/products/:name', (req, res) => {
+    const name = req.params.name
+    console.log('delete product in backend',name)
+    Product.deleteOne({name:name}).then( product=>{
+        if(product){Product.find({}).then( products => res.json(products))}
+        else res.status(204).end()
+    })
 })
 
 const PORT = process.env.PORT || 3001

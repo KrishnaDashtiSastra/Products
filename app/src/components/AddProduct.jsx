@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'
 
 const AddProduct = ({setProducts}) => {  
   const navigate = useNavigate()
-  
   const [newProduct, setNewProduct] = useState({
     name: '',
     price: '',
@@ -31,7 +30,7 @@ const AddProduct = ({setProducts}) => {
         category: ''
       })
     })
-    navigate('/Products')
+    navigate("/products")
   }
   
     const handleInputChange = (event) => {

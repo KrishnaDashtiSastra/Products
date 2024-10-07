@@ -30,7 +30,7 @@ function App() {
       </nav>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/Products' element={<Products products={products} />}/>
+        <Route path='/Products' element={<Products products={products} setProducts={setProducts}/>}/>
         <Route path='/AddProduct' element={<AddProduct setProducts={setProducts}/>}/>
       </Routes>
     </Router>
